@@ -12,7 +12,7 @@ export default class storage extends Component {
         }
     }
     _GetData = () => {
-        const api_url = "http://efrei-mystrois.herokuapp.com/api/";
+        const api_url = "https://efrei-mystrois.herokuapp.com/api/";
         const requestOptions = {
             method: 'GET',
             headers: { 'Content-Type': 'application/json', Authorization: localStorage.getItem("token") }
@@ -34,7 +34,7 @@ export default class storage extends Component {
         this.props.history.push("/changefile/" + blob_uuid);
     }
     _DeleteObject = (uuid) => {
-        const api_url = "http://efrei-mystrois.herokuapp.com/api/";
+        const api_url = "https://efrei-mystrois.herokuapp.com/api/";
         const requestOptions = {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json', Authorization: localStorage.getItem("token") }

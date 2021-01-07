@@ -24,7 +24,7 @@ export default class login extends Component {
         }
     }
     _UploadFile = () => {
-        const api_url = "http://efrei-mystrois.herokuapp.com/api/";
+        const api_url = "https://efrei-mystrois.herokuapp.com/api/";
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', Authorization: localStorage.getItem("token") },
