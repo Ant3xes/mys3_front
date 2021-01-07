@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Form, Card } from 'react-bootstrap';
-import './fichier.css'
+import './add_file.css'
 import {SignIn} from '../../../../helpers/auth';
 
 export default class login extends Component {
@@ -30,7 +30,7 @@ export default class login extends Component {
             <div>
                 <Card className="Card">
                     <Card.Header className="Card-header">
-                        Changement d'un Fichier
+                        Ajouter d'un Fichier
                     </Card.Header>
                     <Card.Body className="Card-body">
                         <Form >
