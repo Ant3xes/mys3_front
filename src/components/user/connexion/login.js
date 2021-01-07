@@ -67,6 +67,7 @@ export default class login extends Component {
                                 <input
                                     placeholder="Password"
                                     className="form-control"
+                                    type="password"
                                     value={this.state.password}
                                     onChange= {(event) => {this.handleChange(event, "password")}}/>
                             </Form.Group>

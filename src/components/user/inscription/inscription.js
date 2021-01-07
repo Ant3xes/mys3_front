@@ -84,6 +84,7 @@ export default class inscription extends Component {
                                     placeholder="Password"
                                     className="form-control"
                                     value={this.state.password}
+                                    type="password"
                                     onChange= {(event) => {this.handleChange(event, "password")}}/>
                             </Form.Group>
                             <Form.Group controlId="formBasicPassword">
@@ -92,6 +93,7 @@ export default class inscription extends Component {
                                     placeholder="Password"
                                     className="form-control"
                                     value={this.state.confirmed_password}
+                                    type="password"
                                     onChange= {(event) => {this.handleChange(event, "confirmed_password")}}/>
                             </Form.Group>
                             <Button variant="dark" onClick={this._SignUp} >
