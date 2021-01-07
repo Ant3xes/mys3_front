@@ -24,7 +24,7 @@ export default class storage extends Component {
        this.setState({dataLoaded: true})
     }
     render() {
-        if(this.state.dataLoaded) {
+        if(this.state.dataLoaded && this.state.folders.length > 0) {
             return (
                 <div className="m-2 mt-5">          
                     <ul className="list-group-flush">
@@ -61,11 +61,17 @@ export default class storage extends Component {
                 </div>
             )
         } else {
-            return (
-                <div class="spinner-border m-5 p-5" role="status">
-                    <span class="sr-only">Loading...</span>
-                </div>
-            )
+            if(this.state.folders <= 0) {
+                return (
+                    <div><h1>No data</h1></div>
+                )
+            } else {
+                return (
+                    <div className="spinner-border m-5 p-5" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </div>
+                )
+            }
 
         }
     }

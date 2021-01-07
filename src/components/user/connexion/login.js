@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Form, Card } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 import './login.css'
 
 export default class login extends Component {
@@ -26,6 +27,7 @@ export default class login extends Component {
         .then(data => {
             localStorage.setItem("user_uuid", data.uuid)
             localStorage.setItem("token", "Bearer " + data.token)
+            this.props.history.push('/storage')
         });
     }
     handleChange(event, type) {
