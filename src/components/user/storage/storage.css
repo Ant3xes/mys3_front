@@ -1,0 +1,25 @@
+.ButtonsGroup {
+    float: right;
+    color: black;
+}
+
+.Card-header_1 {
+  background-color: #1d7cdb;
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+}
+
+.Card-header_2 {
+  background-color: #db1536;
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+} 
+
+/* .Buttons {
+  color: black;
+  width: 5%;
+} */
