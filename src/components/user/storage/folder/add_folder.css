@@ -1,0 +1,16 @@
+.Card {
+  margin-top: 200px;
+  width: '18rem'
+}
+
+.Card-header {
+  background-color: #343A40;
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+}
+
+.Card-body {
+  text-align: center;
+}

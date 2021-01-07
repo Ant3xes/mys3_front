@@ -13,7 +13,7 @@ export default class login extends Component {
         this.handleChange = this.handleChange.bind(this);
 
     }
-    
+
     handleChange(event, type) {
         switch (type) {
             case "name":
@@ -24,12 +24,13 @@ export default class login extends Component {
                 break;
         }
     }
+
     render() {
         return (
             <div>
                 <Card className="Card">
                     <Card.Header className="Card-header">
-                        Ajouter un Dossier
+                        Changement d'un Fichier
                     </Card.Header>
                     <Card.Body className="Card-body">
                         <Form >

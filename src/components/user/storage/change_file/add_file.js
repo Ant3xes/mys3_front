@@ -30,7 +30,7 @@ export default class login extends Component {
             <div>
                 <Card className="Card">
                     <Card.Header className="Card-header">
-                        Ajouter un Fichier
+                        Ajouter d'un Fichier
                     </Card.Header>
                     <Card.Body className="Card-body">
                         <Form >
