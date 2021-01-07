@@ -16,7 +16,7 @@ export default class inscription extends Component {
     }
 
     _SignUp = () => {
-        const api_url = "https://efrei-mystrois.herokuapp.com/api";
+        const api_url = "http://efrei-mystrois.herokuapp.com/api/";
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -94,7 +94,7 @@ export default class inscription extends Component {
                                     value={this.state.confirmed_password}
                                     onChange= {(event) => {this.handleChange(event, "confirmed_password")}}/>
                             </Form.Group>
-                            <Button variant="dark" type="submit" onClick={this._SignUp} >
+                            <Button variant="dark" onClick={this._SignUp} >
                                 Entrer
                             </Button>
                             <Button variant="dark" className="m-2" onClick={this.GoLogin} >
