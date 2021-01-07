@@ -25,10 +25,10 @@ function App() {
               <Route exact path="/" component={Login} />
               <Route exact path="/signup" component={Inscription} />
               <Route exact path="/storage" component={Storage} />
-              <Route exact path="/addfile" component={Add_file} />
+              <Route exact path="/addfile/:bucket_uuid" component={Add_file} />
               <Route exact path="/addfolder" component={Add_folder} />
-              <Route exact path="/changefile" component={Change_file} />
-              <Route exact path="/changefolder" component={Change_folder} />
+              <Route exact path="/changefile/:blob_uuid" component={Change_file} />
+              <Route exact path="/changefolder/:bucket_uuid" component={Change_folder} />
               <Route exact path="/forgotpassword" component={ForgotPassword} />
             </Switch>
           </div>

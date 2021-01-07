@@ -1,5 +1,5 @@
 export function SignIn() {
-    fetch('http://localhost:5000/api/auth/login', {
+    fetch('https://efrei-mystrois.herokuapp.com/api/auth/login', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -12,7 +12,7 @@ export function SignIn() {
 
 
 export function SignUp() {
-    fetch('http://localhost:5000/api/auth/login', {
+    fetch('https://efrei-mystrois.herokuapp.com/api/auth/login', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',

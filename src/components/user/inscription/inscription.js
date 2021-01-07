@@ -16,7 +16,7 @@ export default class inscription extends Component {
     }
 
     _SignUp = () => {
-        const api_url = "http://localhost:5000/api/";
+        const api_url = "https://efrei-mystrois.herokuapp.com/api";
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

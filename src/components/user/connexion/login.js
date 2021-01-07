@@ -9,13 +9,11 @@ export default class login extends Component {
             email: '',
             password:''
         };
-
         this.handleChange = this.handleChange.bind(this);
-
     }
 
     _Login = () => {
-        const api_url = "http://localhost:5000/api/";
+        const api_url = "https://efrei-mystrois.herokuapp.com/api/";
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -24,9 +22,11 @@ export default class login extends Component {
         fetch(api_url + "auth/login", requestOptions)
         .then(response => response.json())
         .then(data => {
-            localStorage.setItem("user_uuid", data.uuid)
-            localStorage.setItem("token", "Bearer " + data.token)
-            this.props.history.push('/storage')
+            if(data.success) {
+                localStorage.setItem("user_uuid", data.uuid)
+                localStorage.setItem("token", "Bearer " + data.token)
+                this.props.history.push('/storage')
+            }
         });
     }
     GoSignUp = () => {
@@ -44,7 +44,6 @@ export default class login extends Component {
                 break;
         }
     }
-
 
     render() {
         return (

@@ -12,8 +12,12 @@ export default class storage extends Component {
         }
     }
     _GetData = () => {
-        const api_url = "http://localhost:5000/api/";
-        fetch(api_url + "buckets/user/" + localStorage.getItem("user_uuid"))
+        const api_url = "https://efrei-mystrois.herokuapp.com/api/";
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json', Authorization: localStorage.getItem("token") }
+        };
+        fetch(api_url + "buckets/user/" + localStorage.getItem("user_uuid"), requestOptions)
         .then(res => res.json())
         .then(result => {
             this.setState({folders: result})
@@ -22,6 +26,24 @@ export default class storage extends Component {
     componentDidMount = () => {
        this._GetData()
        this.setState({dataLoaded: true})
+    }
+    GoAddFile = (bucket_uuid) => {
+        this.props.history.push("/addfile/" + bucket_uuid);
+    }
+    GoChangeFile = (blob_uuid) => {
+        this.props.history.push("/changefile/" + blob_uuid);
+    }
+    _DeleteObject = (uuid) => {
+        const api_url = "https://efrei-mystrois.herokuapp.com/api/";
+        const requestOptions = {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json', Authorization: localStorage.getItem("token") }
+        };
+        fetch(api_url + "blobs/" + uuid, requestOptions)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data) 
+        })
     }
     render() {
         if(this.state.dataLoaded && this.state.folders.length > 0) {
@@ -33,26 +55,25 @@ export default class storage extends Component {
                                 item.name = "Dossier basique";
                             }
                             return (
-                                <span>
-                                <a href="#aza" className="list-group-item list-group-item-action active" aria-current="true">
+                                <span key={i}>
+                                <span className="list-group-item list-group-item-action active" aria-current="true">
                                 {item.name}
                                     <span className="ButtonsGroup">
-                                        <span className="Buttons badge bg-white ml-1 "><FontAwesomeIcon icon={faPlus} /> </span>
+                                        <span className="Buttons badge bg-white ml-1 "><FontAwesomeIcon icon={faPlus} onClick={() => {this.GoAddFile(item.uuid)}} /> </span>
                                         <span className="Buttons badge bg-white ml-1 "><FontAwesomeIcon icon={faEdit} /></span>
                                         <span className="Buttons badge bg-white ml-1 "><FontAwesomeIcon icon={faTrash} /></span>
                                     </span>
-                                </a>
+                                </span>
                                 {item.blobs.map((blob, w) => {
-                                    console.log(blob)
                                     return(
-                                        <a href="#aa" className="list-group-item list-group-item-action ml-5">
-                                        { blob.name }
-                                        <span className="ButtonsGroup">
-                                            <span className="Buttons badge bg-white rounded-pill ml-1"><FontAwesomeIcon icon={faPlus} /> </span>
-                                            <span className="Buttons badge bg-white rounded-pill ml-1"><FontAwesomeIcon icon={faEdit} /></span>
-                                            <span className="Buttons badge bg-white rounded-pill ml-1"><FontAwesomeIcon icon={faTrash} /></span>
+                                        <span className="list-group-item list-group-item-action ml-5">
+                                        <a href={blob.url} target="blank">{ blob.name }</a>
+                                            <span className="ButtonsGroup">
+                                                <span className="Buttons badge bg-white rounded-pill ml-1"><FontAwesomeIcon icon={faEdit} onClick={() => {this.GoChangeFile(blob.uuid)}} /></span>
+                                                <span className="Buttons badge bg-white rounded-pill ml-1"><FontAwesomeIcon icon={faTrash} onClick={() => {this._DeleteObject(blob.uuid)}}/></span>
+                                            </span>
                                         </span>
-                                        </a>)
+                                    )
                                 })}
                                 </span>
                             )

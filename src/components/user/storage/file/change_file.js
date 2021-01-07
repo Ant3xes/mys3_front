@@ -17,12 +17,24 @@ export default class login extends Component {
     handleChange(event, type) {
         switch (type) {
             case "name":
-                console.log(event.target.value)
                 this.setState({ name: event.target.value })
                 break;
             default:
                 break;
         }
+    }
+    _UpdateBlob = () => {
+        const api_url = "https://efrei-mystrois.herokuapp.com/api/";
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json', Authorization: localStorage.getItem("token") },
+            body: { new_name: this.state.name }
+        };
+        fetch(api_url + "blobs/" + this.props.match.params.blob_uuid, requestOptions)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data) 
+        })
     }
 
     render() {
@@ -42,7 +54,7 @@ export default class login extends Component {
                                     value={this.state.name}
                                     onChange= {(event) => {this.handleChange(event, "name")}}/>
                             </Form.Group>
-                            <Button variant="dark" type="submit" onClick={SignIn}>
+                            <Button variant="dark" onClick={this._UpdateBlob}>
                             Entrer
                             </Button>
                         </Form>
