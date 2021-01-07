@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Button, Form, Card } from 'react-bootstrap';
-import { Link } from "react-router-dom";
 import './login.css'
 
 export default class login extends Component {
@@ -29,6 +28,9 @@ export default class login extends Component {
             localStorage.setItem("token", "Bearer " + data.token)
             this.props.history.push('/storage')
         });
+    }
+    GoSignUp = () => {
+        this.props.history.push('/signup')
     }
     handleChange(event, type) {
         switch (type) {
@@ -71,6 +73,9 @@ export default class login extends Component {
                             </Form.Group>
                             <Button variant="dark" onClick={this._Login}>
                             Entrer
+                            </Button>
+                            <Button variant="dark" className="m-2" onClick={this.GoSignUp}>
+                            S'inscrire
                             </Button>
                         </Form>
                     </Card.Body>

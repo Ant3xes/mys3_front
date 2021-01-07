@@ -26,9 +26,12 @@ export default class inscription extends Component {
         .then(response => response.json())
         .then(data => {
            if(data.success) {
-               
+            this.props.history.push("/")
            }
         });
+    }
+    GoLogin = () => {
+        this.props.history.push("/")
     }
 
     handleChange(event, type) {
@@ -93,6 +96,9 @@ export default class inscription extends Component {
                             </Form.Group>
                             <Button variant="dark" type="submit" onClick={this._SignUp} >
                                 Entrer
+                            </Button>
+                            <Button variant="dark" className="m-2" onClick={this.GoLogin} >
+                                Annuler
                             </Button>
                         </Form>
                     </Card.Body>
