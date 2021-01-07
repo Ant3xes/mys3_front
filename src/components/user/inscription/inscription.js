@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Form, Card } from 'react-bootstrap';
 import './inscription.css'
-import {SignIn} from '../../../helpers/auth';
 
 export default class inscription extends Component {
     constructor(props) {
@@ -16,22 +15,34 @@ export default class inscription extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
+    _SignUp = () => {
+        const api_url = "http://localhost:5000/api/";
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: this.state.email, password: this.state.password, nickname: this.state.nickname })
+        };
+        fetch(api_url + "auth/sign-up", requestOptions)
+        .then(response => response.json())
+        .then(data => {
+           if(data.success) {
+               
+           }
+        });
+    }
+
     handleChange(event, type) {
         switch (type) {
             case "nickname":
-                console.log(event.target.value)
                 this.setState({ nickname: event.target.value })
                 break;
             case "email":
-                console.log(event.target.value)
                 this.setState({ email: event.target.value })
                 break;
             case "password":
-                console.log(event.target.value)
                 this.setState({password: event.target.value})
                 break;
             case "confirmed_password":
-                console.log(event.target.value)
                 this.setState({ confirmed_password: event.target.value })
                 break;
             default:
@@ -80,7 +91,7 @@ export default class inscription extends Component {
                                     value={this.state.confirmed_password}
                                     onChange= {(event) => {this.handleChange(event, "confirmed_password")}}/>
                             </Form.Group>
-                            <Button variant="dark" type="submit" onClick={SignIn} >
+                            <Button variant="dark" type="submit" onClick={this._SignUp} >
                                 Entrer
                             </Button>
                         </Form>

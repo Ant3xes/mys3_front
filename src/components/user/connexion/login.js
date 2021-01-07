@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Form, Card } from 'react-bootstrap';
 import './login.css'
-import {SignIn} from '../../../helpers/auth';
 
 export default class login extends Component {
     constructor(props) {
@@ -15,14 +14,26 @@ export default class login extends Component {
 
     }
 
+    _Login = () => {
+        const api_url = "http://localhost:5000/api/";
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: this.state.email, password: this.state.password })
+        };
+        fetch(api_url + "auth/login", requestOptions)
+        .then(response => response.json())
+        .then(data => {
+            localStorage.setItem("user_uuid", data.uuid)
+            localStorage.setItem("token", "Bearer " + data.token)
+        });
+    }
     handleChange(event, type) {
         switch (type) {
             case "email":
-                console.log(event.target.value)
                 this.setState({ email: event.target.value })
                 break;
             case "password":
-                console.log(event.target.value)
                 this.setState({password: event.target.value})
                 break;
             default:
@@ -56,7 +67,7 @@ export default class login extends Component {
                                     value={this.state.password}
                                     onChange= {(event) => {this.handleChange(event, "password")}}/>
                             </Form.Group>
-                            <Button variant="dark" type="submit" onClick={SignIn}>
+                            <Button variant="dark" onClick={this._Login}>
                             Entrer
                             </Button>
                         </Form>
